@@ -10,15 +10,15 @@ export default class News extends Component {
         <div className="row">
 
           <div className="col-md-4">
-            <NewsItem title="mytiltle" description="mydes" />
+            <NewsItem title="mytiltle" discription="mydes" />
           </div>
 
           <div className="col-md-4">
-            <NewsItem title="mytiltle" description="mydes" />
+            <NewsItem title="mytiltle" discription="mydes" />
           </div>
 
           <div className="col-md-4">
-            <NewsItem title="mytiltle" description="mydes" />
+            <NewsItem title="mytiltle" discription="mydes" />
           </div>
           
         </div>
