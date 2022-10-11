@@ -41,19 +41,6 @@ export default class News extends Component {
       "urlToImage": "https://s.yimg.com/uu/api/res/1.2/aSpiyMtwxFoOYFIharGJxg--~B/aD0xMzUwO3c9MTA4MDthcHBpZD15dGFjaHlvbg--/https://media.zenfs.com/en/nbc_today_217/443d5b2c5a13b451495453b5cd21e4a2",
       "publishedAt": "2022-10-10T05:30:58Z",
       "content": "Jimmy Kimmel is sharing an update on his 5-year-old son Billys health following multiple heart surgeries.\r\nOn Saturday, Oct. 8, the comedian and his wife, former Jimmy Kimmel Live! writer Molly McNea… [+3188 chars]"
-    },
-    {
-      "source": {
-        "id": "fox-news",
-        "name": "Fox News"
-      },
-      "author": "Landon Mion",
-      "title": "Dem city council member says Blue Angels should be banned from flying over San Francisco - Fox News",
-      "description": "A San Francisco Democrat city council member said Sunday that the U.S. Navy Blue Angels should not be allowed in the city's airspace. The squadron's performance was canceled due to fog.",
-      "url": "https://www.foxnews.com/us/dem-city-council-member-says-blue-angels-should-banned-flying-over-san-francisco",
-      "urlToImage": "https://static.foxnews.com/foxnews.com/content/uploads/2020/04/blue-angles-1-US-NAVY.jpg",
-      "publishedAt": "2022-10-10T05:03:06Z",
-      "content": "The Blue Angels' scheduled show in San Francisco, California, for Fleet Week was canceled Sunday due to weather conditions, and a Democrat city council member suggested the planes not be permitted in… [+1570 chars]"
     }
   ]
   constructor() {
@@ -71,7 +58,7 @@ export default class News extends Component {
         <div className="row mb-4" >
         {this.state.articles.map((elem) => {
           return <div className="col-md-4" key={elem.url}>
-              <NewsItem title={elem.title} discription={elem.description} imageUrl= {elem.urlToImage} newsUrl = {elem.url} />
+              <NewsItem title={elem.title.slice(0,45)} discription={elem.description.slice(0,85)} imageUrl= {elem.urlToImage} newsUrl = {elem.url} />
             </div>
         })}
         </div>
