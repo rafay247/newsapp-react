@@ -32,9 +32,8 @@ export default class News extends Component {
           </div>
         </div>
         <div className="container d-flex justify-content-between">
-          <button type = "button" className="btn btn-sm btn-dark" ></button>
-          <button type = "button" className="btn btn-sm btn-dark" ></button>
-
+          <button type = "button" className="btn btn-sm btn-dark" >&laquo, previous</button>
+          <button type = "button" className="btn btn-sm btn-dark" >&raquo, next</button>
         </div>
       </>
     )
