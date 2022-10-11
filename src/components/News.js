@@ -7,7 +7,8 @@ export default class News extends Component {
     super()
     this.state = {
       articles: this.articles,
-      loading: false
+      loading: false,
+      pagee: 1
     }
   }
   async componentDidMount() {
@@ -19,17 +20,23 @@ export default class News extends Component {
   }
   render() {
     return (
-      <div className="container my-3">
-        <h1 className='my-4'>NewsApp - Top headlines</h1>
-
-        <div className="row mb-4" >
-          {this.state.articles.map((elem) => {
-            return <div className="col-md-4" key={elem.url}>
-              <NewsItem title={elem.title ? elem.title.slice(0, 35) : ""} discription={elem.description ? elem.description.slice(0, 85) : ""} imageUrl={elem.urlToImage} newsUrl={elem.url} />
-            </div>
-          })}
+      <>
+        <div className="container my-3">
+          <h1 className='my-4'>NewsApp - Top headlines</h1>
+          <div className="row mb-4" >
+            {this.state.articles.map((elem) => {
+              return <div className="col-md-4" key={elem.url}>
+                <NewsItem title={elem.title ? elem.title.slice(0, 35) : ""} discription={elem.description ? elem.description.slice(0, 85) : ""} imageUrl={elem.urlToImage} newsUrl={elem.url} />
+              </div>
+            })}
+          </div>
         </div>
-      </div>
+        <div className="container d-flex justify-content-between">
+          <button type = "button" className="btn btn-sm btn-dark" ></button>
+          <button type = "button" className="btn btn-sm btn-dark" ></button>
+
+        </div>
+      </>
     )
   }
 }
