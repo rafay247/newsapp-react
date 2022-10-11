@@ -8,12 +8,13 @@ export default class News extends Component {
     this.state = {
       articles: this.articles,
       loading: false,
-      pagee: 1
+      pagee: 1,
+      totalResults: dataParse.totalResults
     }
   }
 
   handleNext = async () => {
-    let url = `https://newsapi.org/v2/top-headlines?country=us&apiKey=dbfdd9ebf09a476bb8d34b8ca66ae9c2&page=${page}`
+    let url = `https://newsapi.org/v2/top-headlines?country=us&apiKey=dbfdd9ebf09a476bb8d34b8ca66ae9c2&page=${this.state.page}&pageSize=20`;
     let data = await fetch(url);
     let dataParse = await data.json();
     this.setState({
@@ -23,15 +24,18 @@ export default class News extends Component {
 
   }
   handleNext = async () => {
-    let url = `https://newsapi.org/v2/top-headlines?country=us&apiKey=dbfdd9ebf09a476bb8d34b8ca66ae9c2&page=${page}`
+    if (this.state.page + 1 > Math.ceil(this.state.totalResults / 20)) {
+    }
+    else{
+    let url = `https://newsapi.org/v2/top-headlines?country=us&apiKey=dbfdd9ebf09a476bb8d34b8ca66ae9c2&page=${this.state.page}&pageSize=20`;
     let data = await fetch(url);
     let dataParse = await data.json();
     this.setState({
       page: this.state.page - 1,
       articles: dataParse.articles
     })
-
   }
+}
   render() {
     return (
       <>
