@@ -6,7 +6,7 @@ export default class NewsItem extends Component {
     return (
       <div className="container my-3">
         <div className="card" style={{ width: "18rem" }}>
-          <img src={imageUrl ? imageUrl : "https://static.foxnews.com/foxnews.com/content/uploads/2020/04/blue-angles-1-US-NAVY.jpg"} className="card-img-top" alt="..." />
+          <img src={!imageUrl ? "https://static.foxnews.com/foxnews.com/content/uploads/2020/04/blue-angles-1-US-NAVY.jpg" : imageUrl} className="card-img-top" alt="..." />
           <div className="card-body">
             <h5 className="card-title">{title}</h5>
             <p className="card-text">{discription}</p>
