@@ -3,11 +3,10 @@ import NewsItem from './NewsItem'
 import Spinner from './Spinner'
 
 export default class News extends Component {
-  articles = []
   constructor() {
     super()
     this.state = {
-      articles: this.articles,
+      articles: [],
       loading: false,
       page: 1,
     }
@@ -24,7 +23,6 @@ export default class News extends Component {
       loading: false
     })
   }
-
 
   handlePrev = async () => {
     let url = `https://newsapi.org/v2/top-headlines?country=us&apiKey=dbfdd9ebf09a476bb8d34b8ca66ae9c2&page=${this.state.page}&pageSize=${this.props.pageSize}`;
