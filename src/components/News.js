@@ -8,31 +8,38 @@ export default class News extends Component {
     this.state = {
       articles: this.articles,
       loading: false,
-      pagee: 1,
-      totalResults: dataParse.totalResults
+      page: 1,
     }
   }
-
-  handleNext = async () => {
-    let url = `https://newsapi.org/v2/top-headlines?country=us&apiKey=dbfdd9ebf09a476bb8d34b8ca66ae9c2&page=${this.state.page}&pageSize=20`;
+  
+  async componentDidMount(){ 
+    let url = "https://newsapi.org/v2/top-headlines?country=us&apiKey=dbfdd9ebf09a476bb8d34b8ca66ae9c2&page=1&pageSize=6";
     let data = await fetch(url);
-    let dataParse = await data.json();
-    this.setState({
-      page: this.stat.page + 1,
-      articles: dataParse.articles
-    })
+    let parsedData = await data.json()
+    console.log(parsedData); 
+    this.setState({articles: parsedData.articles, totalResults: parsedData.totalResults})
+}
 
+
+  handlePrev = async () => {
+    let url = `https://newsapi.org/v2/top-headlines?country=us&apiKey=dbfdd9ebf09a476bb8d34b8ca66ae9c2&page=${this.state.page}&pageSize=6`;
+    let data = await fetch(url);
+    let parseData = await data.json();
+    this.setState({
+      page: this.stat.page - 1,
+      articles: parseData.articles
+    })
   }
   handleNext = async () => {
-    if (this.state.page + 1 > Math.ceil(this.state.totalResults / 20)) {
+    if (this.state.page + 1 > Math.ceil(this.state.totalResults / 6)) {
     }
     else{
-    let url = `https://newsapi.org/v2/top-headlines?country=us&apiKey=dbfdd9ebf09a476bb8d34b8ca66ae9c2&page=${this.state.page}&pageSize=20`;
+    let url = `https://newsapi.org/v2/top-headlines?country=us&apiKey=dbfdd9ebf09a476bb8d34b8ca66ae9c2&page=${this.state.page}&pageSize=6`;
     let data = await fetch(url);
-    let dataParse = await data.json();
+    let parseData = await data.json();
     this.setState({
-      page: this.state.page - 1,
-      articles: dataParse.articles
+      page: this.state.page + 1,
+      articles: parseData.articles
     })
   }
 }
@@ -49,9 +56,9 @@ export default class News extends Component {
             })}
           </div>
         </div>
-        <div className="container d-flex justify-content-between">
-          <button disabled={this.state.page<=1} type="button" className="btn btn-sm btn-dark" onClick={handlePrev}>&laquo, previous</button>
-          <button type="button" className="btn btn-sm btn-dark" onClick={handleNext}>&raquo, next</button>
+        <div className="container d-flex justify-content-between mb-4">
+          <button disabled={this.state.page<=1} type="button" className="btn btn-sm btn-dark" onClick={this.handlePrev}> &larr; Previous</button>
+          <button type="button" className="btn btn-lg btn-dark" onClick={this.handleNext}> Next &rarr;</button>
         </div>
       </>
     )
