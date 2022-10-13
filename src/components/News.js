@@ -24,7 +24,7 @@ export default class News extends Component {
     })
   }
 
-  handlePrev = async () => {
+  handlePrevClick = async () => {
     let url = `https://newsapi.org/v2/top-headlines?country=us&apiKey=dbfdd9ebf09a476bb8d34b8ca66ae9c2&page=${this.state.page}&pageSize=${this.props.pageSize}`;
     this.setState({ loading: true })
     let data = await fetch(url);
@@ -35,7 +35,7 @@ export default class News extends Component {
       loading: false
     })
   }
-  handleNext = async () => {
+  handleNextClick = async () => {
     if (!(this.state.page + 1 > Math.ceil(this.state.totalResults / this.props.pageSize))) {
       let url = `https://newsapi.org/v2/top-headlines?country=us&apiKey=dbfdd9ebf09a476bb8d34b8ca66ae9c2&page=${this.state.page}&pageSize=${this.props.pageSize}`;
       this.setState({ loading: true })
@@ -67,8 +67,8 @@ export default class News extends Component {
           </div>
         </div>
         <div className="container d-flex justify-content-between mb-4">
-          <button disabled={this.state.page <= 1} type="button" className="btn btn-lg btn-dark" onClick={this.handlePrev}> &larr; Previous</button>
-          <button disabled={this.state.page + 1 > Math.ceil(this.state.totalResults / this.props.pageSize)} type="button" className="btn btn-lg btn-dark" onClick={this.handleNext}> Next &rarr;</button>
+          <button disabled={this.state.page <= 1} type="button" className="btn btn-lg btn-dark" onClick={this.handlePrevClick}> &larr; Previous</button>
+          <button disabled={this.state.page + 1 > Math.ceil(this.state.totalResults / this.props.pageSize)} type="button" className="btn btn-lg btn-dark" onClick={this.handleNextClick}> Next &rarr;</button>
         </div>
       </>
     )
