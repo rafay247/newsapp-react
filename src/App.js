@@ -10,6 +10,7 @@ export default class App extends Component {
       <div>
         <Router>
         <Navbar/>
+        
         <Routes>
           <Route exact path= "/"><News pageSize = {5} country = "us" category = "general" apiKey = "dbfdd9ebf09a476bb8d34b8ca66ae9c2" /> </Route>
           <Route exact path= "/business"><News pageSize = {5} country = "us" category = "business" apiKey = "dbfdd9ebf09a476bb8d34b8ca66ae9c2" /> </Route>
