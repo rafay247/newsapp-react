@@ -5,11 +5,11 @@ import PropTypes from 'prop-types'
 
 
 export default class News extends Component {
-  
+
   static defaultProps = {
-    country : 'us',
+    country: 'us',
     pageSize: 6,
-    category : 'general'
+    category: 'general'
   }
   static propTypes = {
     country: PropTypes.string,
@@ -28,7 +28,7 @@ export default class News extends Component {
     }
   }
 
-  async updateNews() {
+  updateNews = async () => {
     let url = `https://newsapi.org/v2/top-headlines?country=${this.props.country}&category=${this.props.category}&apiKey=${this.props.apiKey}&page=${this.state.page}&pageSize=${this.props.pageSize}`;
     this.setState({ loading: true })
     let data = await fetch(url);
@@ -39,40 +39,17 @@ export default class News extends Component {
       loading: false
     })
   }
-
-  // handlePrevClick = async () => {
-  //   let url = `https://newsapi.org/v2/top-headlines?country=${this.props.country}&apiKey=${this.props.apiKey}&page=${this.state.page - 1}&pageSize=${this.props.pageSize}`;
-  //   this.setState({ loading: true })
-  //   let data = await fetch(url);
-  //   let parseData = await data.json();
-  //   this.setState({
-  //     articles: parseData.articles,
-  //     loading: false
-  //   })
-  // }
-  async componentDidMount(){
+  componentDidMount = async () => {
     this.updateNews();
-}
+  }
   handleNextClick = async () => {
     this.setState({ page: this.state.page + 1 });
     this.updateNews();
-}
+  }
   handlePrevClick = async () => {
     this.setState({ page: this.state.page - 1 });
     this.updateNews();
-}
-  // handleNextClick = async () => {
-  //   if (!(this.state.page + 1 > Math.ceil(this.state.totalResults / this.props.pageSize))) {
-  //     let url = `https://newsapi.org/v2/top-headlines?country=${this.props.country}&apiKey=${this.props.apiKey}&page=${this.state.page + 1}&pageSize=${this.props.pageSize}`;
-  //     this.setState({ loading: true })
-  //     let data = await fetch(url);
-  //     let parseData = await data.json();
-  //     this.setState({
-  //       articles: parseData.articles,
-  //       loading: false
-  //     })
-  //   }
-  // }
+  }
   render() {
     return (
       <>
@@ -85,7 +62,7 @@ export default class News extends Component {
             {!this.state.loading && this.state.articles.map((elem) => {
               return <div className="col-md-4" key={elem.url}>
                 <NewsItem title={elem.title ? elem.title.slice(0, 45) : ""} discription={elem.description ? elem.description.slice(0, 105) : ""}
-                  imageUrl={elem.urlToImage} newsUrl={elem.url} author = {elem.author} date = {elem.publishedAt} source = {elem.source.name} />
+                  imageUrl={elem.urlToImage} newsUrl={elem.url} author={elem.author} date={elem.publishedAt} source={elem.source.name} />
               </div>
             })}
 
