@@ -18,7 +18,9 @@ export default class News extends Component {
     apiKey: PropTypes.string,
   }
 
-
+  capitalFirstLetter = (str) => {
+    return str.charAt(0).toUpperCase() + str.slice(1)
+  }
   constructor() {
     super()
     this.state = {
