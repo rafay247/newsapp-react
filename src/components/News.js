@@ -29,7 +29,6 @@ export default class News extends Component {
       page: 1,
      }
      document.title = `${this.capitalFirstLetter(this.props,category)} - NewsApp` 
-
   }
 
   updateNews = async () => {
@@ -58,7 +57,7 @@ export default class News extends Component {
     return (
       <>
         <div className="container my-3">
-          <h1 className='my-4 text-center'>NewsApp - Top headlines</h1>
+          <h1 className="text-center" style={{ margin: '35px 0px' }}>NewsApp - top {this.capitalizeFirstletter(this.props.category)} Headlines</h1>
           {this.state.loading && <Spinner />}
 
           <div className="row mb-4" >
