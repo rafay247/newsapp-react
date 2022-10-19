@@ -21,14 +21,15 @@ export default class News extends Component {
   capitalFirstLetter = (str) => {
     return str.charAt(0).toUpperCase() + str.slice(1)
   }
-  constructor() {
-    super()
+  constructor(props) {
+    super(props)
     this.state = {
       articles: [],
       loading: true,
       page: 1,
+      totalResults : 0
      }
-     document.title = `${this.capitalFirstLetter(this.props,category)} - NewsApp` 
+     document.title = `${this.capitalFirstLetter(this.props.category)} - NewsApp` 
   }
 
   updateNews = async () => {
@@ -53,6 +54,16 @@ export default class News extends Component {
     this.setState({ page: this.state.page - 1 });
     this.updateNews();
   }
+  fetchMoreData = async () => {  
+    this.setState({page: this.state.page + 1})
+    let url = `https://newsapi.org/v2/top-headlines?country=${this.props.country}&category=${this.props.category}&apiKey=${this.props.apiKey}&page=${this.state.page}&pageSize=${this.props.pageSize}`;
+    let data = await fetch(url);
+    let parsedData = await data.json()
+    this.setState({
+        articles: this.state.articles.concat(parsedData.articles),
+        totalResults: parsedData.totalResults
+    })
+  };
   render() {
     return (
       <>
