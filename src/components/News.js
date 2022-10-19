@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import NewsItem from './NewsItem'
 import Spinner from './Spinner'
 import PropTypes from 'prop-types'
-
+import InfiniteScroll from "react-infinite-scroll-component";
 
 export default class News extends Component {
 
@@ -25,7 +25,7 @@ export default class News extends Component {
     super()
     this.state = {
       articles: [],
-      loading: false,
+      loading: true,
       page: 1,
      }
      document.title = `${this.capitalFirstLetter(this.props,category)} - NewsApp` 
@@ -71,10 +71,10 @@ export default class News extends Component {
 
           </div>
         </div>
-        <div className="container d-flex justify-content-between mb-4">
+        {/* <div className="container d-flex justify-content-between mb-4">
           <button disabled={this.state.page <= 1} type="button" className="btn btn-lg btn-dark" onClick={this.handlePrevClick}> &larr; Previous</button>
           <button disabled={this.state.page + 1 > Math.ceil(this.state.totalResults / this.props.pageSize)} type="button" className="btn btn-lg btn-dark" onClick={this.handleNextClick}> Next &rarr;</button>
-        </div>
+        </div> */}
       </>
     )
   }
