@@ -68,7 +68,6 @@ export default class News extends Component {
     return (
       <>
 
-        {/* <div className="container my-3"> */}
         <h1 className="text-center" style={{ margin: '35px 0px' }}>NewsApp - top {this.capitalizeFirstletter(this.props.category)} Headlines</h1>
         {this.state.loading && <Spinner />}
 
@@ -92,7 +91,6 @@ export default class News extends Component {
             </div>
           </div>
         </InfiniteScroll>
-        {/* </div> */}
         {/* <div className="container d-flex justify-content-between mb-4">
           <button disabled={this.state.page <= 1} type="button" className="btn btn-lg btn-dark" onClick={this.handlePrevClick}> &larr; Previous</button>
           <button disabled={this.state.page + 1 > Math.ceil(this.state.totalResults / this.props.pageSize)} type="button" className="btn btn-lg btn-dark" onClick={this.handleNextClick}> Next &rarr;</button>
